@@ -4,8 +4,10 @@
 - 열기: http://localhost:8000(새 창 열림)
 
 ### 스마트폰 실행
-- 세 파일을 HTTPS 정적 호스팅에 올리기
-- Safari(아이폰) 또는 Chrome(안드로이드)에서 열기
+- PC에서 Netlify Drop 열기
+- index.html이 들어 있는 폴더 자체를 Netlify Drop 업로드 영역으로 drag & drop
+- 업로드 완료 시 표시된 https://…netlify.app 주소 복사
+- Safari/Chrome에서 열기
 
 ### 카메라 테스트
 - 거리 감지 설정 → 카메라 켜기 → 권한 허용 (30cm 보정)
