@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ko">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>YouTube Kids</title>
+<style>
+*{box-sizing:border-box}body{margin:0;color:#171717;background:#fff;font:16px Arial,system-ui,sans-serif}header{height:58px;display:flex;align-items:center;gap:19px;padding:0 18px;border-bottom:1px solid #eee}.brand{display:flex;align-items:center;gap:6px;font-size:23px;letter-spacing:-1.5px;font-weight:900}.logo{display:grid;place-items:center;background:#f03;color:white;width:31px;height:21px;border-radius:6px;font-size:13px}.demo{margin-left:auto;color:#666;font-size:12px}.wrap{max-width:1140px;margin:auto;padding:18px}.stage{position:relative;background:#111;aspect-ratio:16/9;overflow:hidden;border-radius:12px}.stage #video{width:100%;height:100%;display:none}.play{position:absolute;inset:0;margin:auto;width:70px;height:49px;border:0;border-radius:13px;background:#f03;color:white;font-size:24px;cursor:pointer}.watchTitle{font-size:21px;font-weight:750;padding:14px 0 12px;border-bottom:1px solid #eee}.settings{margin-top:12px;padding:8px 0}.settings summary{cursor:pointer;width:max-content;font-weight:650}.panel{margin:10px 0}.metrics,.btnGrid{display:flex;gap:8px 16px;flex-wrap:wrap;margin:10px 0}.btnGrid button{border:0;border-radius:20px;padding:10px 14px;background:#eee;font:inherit;cursor:pointer}#btnCamOn{background:#171717;color:white}.statusBadge{font-size:14px;color:#555}.statusBadge.safe{color:#197840}.statusBadge.warning{color:#b00020}.statusBadge.caution{color:#785700}#calibMsg,.metrics{font-size:13px}#errorBox{display:none;color:#a80019;padding:8px 0}.camRow{display:none;position:absolute;right:10px;top:10px;width:22%;min-width:85px;max-width:140px;overflow:hidden;border-radius:8px}.camRow.active{display:block}#cam{width:100%;display:block;transform:scaleX(-1)}#overlayCanvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}#camCanvas{display:none}#pikaChar,#pikaMsg{position:absolute;display:none;left:50%;transform:translateX(-50%);pointer-events:none}#pikaChar{bottom:15%;width:28%;max-width:200px;height:auto}#pikaMsg{top:8%;background:white;padding:8px 13px;border-radius:18px;font-weight:700;max-width:85%;text-align:center}.sliderWrap{display:none}input[type=range]{width:min(100%,350px);accent-color:#f03}@media(max-width:600px){.wrap{padding:0}.stage{border-radius:0}.watchTitle,.settings,#errorBox{margin-left:14px;margin-right:14px}}
+</style>
+<header><span class="brand"><span class="logo">▶</span>YouTube Kids</span></header>
+<main class="wrap"><div id="errorBox" role="alert"></div><div class="stage">
+    <video id="video" controls playsinline preload="metadata"></video>
+    <button class="play" id="pick" aria-label="영상 열기">▶</button>
+    <div class="camRow" id="camRow">
+      <video id="cam" muted playsinline webkit-playsinline autoplay></video>
+      <canvas id="overlayCanvas"></canvas>
+    </div>
+    <canvas id="camCanvas" width="480" height="640"></canvas>
+    <img id="pikaChar" alt="피카부" />
+    <div id="pikaMsg"></div>
+  </div>
+  <!-- 내 영상 <- 여기에 영상 제목 삽입 -->
+  <div class="watchTitle">내 영상</div>
+  <details class="settings"><summary>거리 감지 설정</summary>
+  <div class="panel">
+    <div class="statusBadge unknown" id="statusBadge">
+      <span class="dot" id="statusDot"></span>
+      <span id="statusText">대기 중</span>
+    </div>
+    <div class="metrics">
+      <div>기준 B0 <b id="b0Text">-</b></div>
+      <div>현재 Bt <b id="btText">-</b></div>
+      <div>거리값 R <b id="rText">-</b></div>
+    </div>
+    <div id="calibMsg"></div>
+  </div>
+
+  <div class="btnGrid">
+    <button id="btnCamOn">카메라 켜기</button>
+    <button id="btnCamOff">카메라 끄기</button>
+    <button id="btnCalibrate">30cm 보정</button>
+    <button id="btnOpenVideo">영상 열기</button>
+    <button id="btnSlider">가상 거리</button>
+  </div>
+  <input type="file" id="videoFile" accept="video/*" style="display:none" />
+
+  <div class="panel sliderWrap" id="sliderWrap">
+    <div class="sliderLabel"><span>가상 거리</span><span id="sliderVal">30cm</span></div>
+    <input type="range" id="slider" min="15" max="60" step="1" value="30" />
+  </div>
+
+</details></main>
+<script src="main.js"></script></html>
